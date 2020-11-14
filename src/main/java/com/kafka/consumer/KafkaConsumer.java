@@ -3,9 +3,9 @@ package com.kafka.consumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Controller;
 
-import com.sjm.web.controller.FooController;
-
+@Controller
 public class KafkaConsumer {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(KafkaConsumer.class);
