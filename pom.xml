@@ -39,7 +39,20 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
-
+		
+		<!-- Kafa -->	
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+			<version>2.5.2.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.kafka</groupId>
+		    <artifactId>kafka-clients</artifactId>
+		    <version>2.5.0</version>
+		</dependency>
+		
 		<!-- jdbc token store -->
 		<dependency>
 			<groupId>org.springframework</groupId>

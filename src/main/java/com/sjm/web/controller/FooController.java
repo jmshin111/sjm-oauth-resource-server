@@ -3,7 +3,9 @@ package com.sjm.web.controller;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +19,10 @@ import com.sjm.web.dto.Foo;
 
 @Controller
 public class FooController {
-
+	
+	@Autowired
+	private KafkaTemplate<String, String> kafkaTemplate;
+	
     public FooController() {
         super();
     }
@@ -37,6 +42,9 @@ public class FooController {
     @ResponseBody
     public Foo create(@RequestBody final Foo foo) {
         foo.setId(Long.parseLong(randomNumeric(2)));
+        
+        kafkaTemplate.send("reflectoring-1", "TEST Send Messages");
+        
         return foo;
     }
 
