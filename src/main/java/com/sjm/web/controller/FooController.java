@@ -32,8 +32,8 @@ public class FooController {
     @RequestMapping(method = RequestMethod.GET, value = "/foos/{id}")
     @ResponseBody
     public Foo findById(@PathVariable final long id) {
-
-    	kafkaTemplate.send("reflectoring-1", "TEST Send Messages");
+	System.out.println("Foo find ById");
+    	kafkaTemplate.send("test", "TEST Send Messages");
 
 	    return new Foo(Long.parseLong(randomNumeric(2)), randomAlphabetic(4));
     }
