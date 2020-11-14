@@ -1,13 +1,20 @@
 package com.kafka.consumer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
+
+import com.sjm.web.controller.FooController;
 
 public class KafkaConsumer {
 	
-	@KafkaListener(topics = "${message.topic.name}", groupId = "{kafka.groupId}")
-	public String Listen(String message) {
+	private static final Logger LOG = LoggerFactory.getLogger(KafkaConsumer.class);
+	
+	@KafkaListener(topics = "test")
+	public void listener(String message) {
 		String result = "Foo Received Message in group : " + message;
-		return result;
+	
+		LOG.info(message);
 	}
 	
 }
