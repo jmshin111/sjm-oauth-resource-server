@@ -41,7 +41,7 @@ public class KafkaConsumer {
 //		httpHeaders.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE);
 //		httpHeaders.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_UTF8_VALUE);
 		
-		httpHeaders.set("PhoneNumber","+821068107782");
+		httpHeaders.set("PhoneNumber", "+821068107782");
 		
 		HttpEntity reqEntity = null;
 
