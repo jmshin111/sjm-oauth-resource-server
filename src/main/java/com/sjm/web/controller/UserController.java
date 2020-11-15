@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sjm.kafka.producer.KafkaProducer;
+import com.sjm.web.dto.Result;
 
 @Controller
 public class UserController {
@@ -23,11 +24,11 @@ public class UserController {
     @PreAuthorize("#oauth2.hasScope('write')")
     @RequestMapping(method = RequestMethod.POST, value = "/api/rpaResult/withphone")
     @ResponseBody
-    public void RPAresult(@RequestBody String number) {
+    public void RPAresult(@RequestBody Result result) {
     	
-    	LOG.info(number);
+    	LOG.info(result.toString());
     	
-    	String message = number;
+    	String message = result.getphoneNumber();
     	
     	messageProducer.sendMessage(message);
     }
