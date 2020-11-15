@@ -22,10 +22,10 @@ import com.sjm.web.dto.Foo;
 @Controller
 public class FooController {
 
-	private static final Logger LOG = LoggerFactory.getLogger(FooController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(FooController.class);
 	
-	 @Autowired
-	 private KafkaProducer messageProducer;
+    @Autowired
+    private KafkaProducer messageProducer;
 	 
     public FooController() {
         super();

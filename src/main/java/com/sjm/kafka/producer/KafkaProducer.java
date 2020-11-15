@@ -13,9 +13,9 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 @Controller
 public class KafkaProducer {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(KafkaProducer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(KafkaProducer.class);
 
-	@Value(value = "${message.topic.name}")
+    @Value(value = "${message.topic.name}")
     private String topicName;
 
     @Autowired
