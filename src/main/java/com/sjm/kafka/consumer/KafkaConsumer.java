@@ -12,7 +12,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.client.HttpClientErrorException;
@@ -35,18 +34,14 @@ public class KafkaConsumer {
 	
 		LOG.info(result);
 		
-		HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-		factory.setConnectTimeout(5000);
-		factory.setReadTimeout(5000);
-		
-		RestTemplate restClient = new RestTemplate(factory);
+		RestTemplate restClient = new RestTemplate();
 		
 		HttpHeaders httpHeaders = new HttpHeaders();
 		
 //		httpHeaders.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE);
 //		httpHeaders.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_UTF8_VALUE);
 		
-		httpHeaders.set("PhoneNumber", "+821068107782");
+		httpHeaders.set("PhoneNumber", message);
 		
 		HttpEntity reqEntity = null;
 
@@ -67,13 +62,13 @@ public class KafkaConsumer {
 		HttpStatus respStatus = null;
 		String respBody = null;
 		
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+//		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		
 		try {
 			
 			// Call Rest API
 			/******************************************************************************************************/
-			requestLog(request.getRequestURI(), uri, method, reqEntity.getHeaders(), reqEntity.getBody());
+//			requestLog(request.getRequestURI(), uri, method, reqEntity.getHeaders(), reqEntity.getBody());
 //			ResponseEntity<String> respEntity = restClient.exchange(uri, method, reqEntity, String.class, uriVars);
 
 			ResponseEntity<String> respEntity = restClient.exchange(uri, method, reqEntity, String.class);
@@ -82,7 +77,7 @@ public class KafkaConsumer {
 			// 예외 없이 정상적으로 처리 된 경우
 			/******************************************************************************************************/
 			respStatus = respEntity.getStatusCode();
-			responseLog(request.getRequestURI(), respStatus, respEntity.getBody());
+//			responseLog(request.getRequestURI(), respStatus, respEntity.getBody());
 			/******************************************************************************************************/
 			
 //			if (respEntity.hasBody()) {	// body 데이터가 존재하는 경우
@@ -91,13 +86,16 @@ public class KafkaConsumer {
 			
 		} catch (HttpClientErrorException | HttpServerErrorException e) {
 			respStatus = e.getStatusCode();
-			errorLog(request.getRequestURI(), respStatus, e);
+			LOG.error("Exception: ", e);
+//			errorLog(request.getRequestURI(), respStatus, e);
 		} catch (UnknownHttpStatusCodeException e){
 			respStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-			errorLog(request.getRequestURI(), respStatus, e);
+			LOG.error("Exception: ", e);
+//			errorLog(request.getRequestURI(), respStatus, e);
 		} catch (Exception e) {
 			respStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-			errorLog(request.getRequestURI(), respStatus, e);
+			LOG.error("Exception: ", e);
+			//errorLog(request.getRequestURI(), respStatus, e);
 		}		
 		
 		

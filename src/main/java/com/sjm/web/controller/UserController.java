@@ -23,11 +23,11 @@ public class UserController {
     @PreAuthorize("#oauth2.hasScope('write')")
     @RequestMapping(method = RequestMethod.POST, value = "/api/rpaResult/withphone")
     @ResponseBody
-    public void RPAresult(@RequestBody String number) {
+    public void RPAresult(@RequestBody String phoneNumber) {
     	
-    	LOG.info(number);
+    	LOG.info(phoneNumber);
     	
-    	String message = number;
+    	String message = phoneNumber;
     	
     	messageProducer.sendMessage(message);
     }
