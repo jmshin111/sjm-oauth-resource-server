@@ -1,4 +1,4 @@
-package com.kafka.consumer;
+package com.sjm.kafka.consumer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,12 +16,15 @@ import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 
 import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
 
-@Configuration
 @EnableKafka
+@Configuration
 public class KafkaConsumerConfig {
 
-	@Value("${io.reflectoring.kafka.bootstrap-servers}")
+	@Value("${kafka.bootstrapAddress}")
 	private String bootstrapServers;
+	
+    @Value(value = "${kafka.groupId}")
+    private String groupId;
 	
 	/**
 	 * BOOTSTRAP_SERVERS_CONFIG
@@ -32,10 +35,10 @@ public class KafkaConsumerConfig {
 	@Bean
 	public Map<String, Object> consumerConfigs() {
 		Map<String, Object>	props = new HashMap<>();
-		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, 
-				bootstrapServers);
-		props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, 
-				StringDeserializer.class);
+		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+//		props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+		props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		
 		return props;
 	}
