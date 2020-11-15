@@ -26,7 +26,7 @@ public class KafkaConsumer {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(KafkaConsumer.class);
 	
-	private RestTemplate restClient = null;
+	private RestTemplate restClient =  new RestTemplate();
 	
 	@KafkaListener(topics = "${message.topic.name}", groupId = "${kafka.groupId}") 
 	public void listener(String message) {
