@@ -10,7 +10,7 @@ public class KafkaConsumer {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(KafkaConsumer.class);
 	
-	@KafkaListener(topics = "test")
+	@KafkaListener(topics = "${message.topic.name}", groupId = "${kafka.groupId}")
 	public void listener(String message) {
 		String result = "Foo Received Message in group : " + message;
 	

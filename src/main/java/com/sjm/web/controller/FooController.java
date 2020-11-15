@@ -42,7 +42,7 @@ public class FooController {
     	
     	String message = "TEST Send Messages";
     	
-    	ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send("test", message);
+    	ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send("topic_yjh", message);
     	
     	future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
     	      @Override
