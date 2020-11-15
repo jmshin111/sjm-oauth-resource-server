@@ -1,4 +1,4 @@
-package com.kafka.producer;
+package com.sjm.kafka.producer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.ser.std.StringSerializer;
 @Configuration
 public class KafkaProducerConfig {
 
-	@Value("${io.reflectoring.kafka.bootstrap-servers}")
+	@Value("${kafka.bootstrapAddress}")
 	private String bootstrapServers;
 	
 	/**
