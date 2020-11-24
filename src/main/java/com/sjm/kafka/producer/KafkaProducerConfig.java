@@ -38,8 +38,8 @@ public class KafkaProducerConfig {
 	@Bean
 	public Map<String, Object> producerConfigs() {
 		
-		ObjectMapper mapper = new ObjectMapper();
-		Serde<Result> resultSerde = new JsonSerde<>(Result.class, mapper);
+//		ObjectMapper mapper = new ObjectMapper();
+		Serde<Result> resultSerde = new JsonSerde<>(Result.class);
 
 		Map<String, Object> props = new HashMap<>();
 		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);

@@ -15,6 +15,7 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.support.serializer.JsonSerde;
+import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
@@ -39,8 +40,8 @@ public class KafkaConsumerConfig {
 	@Bean
 	public Map<String, Object> consumerConfigs() {
 		
-		ObjectMapper mapper = new ObjectMapper();
-		Serde<Result> resultSerde = new JsonSerde<>(Result.class, mapper);
+//		ObjectMapper mapper = new ObjectMapper();
+		Serde<Result> resultSerde = new JsonSerde<>(Result.class);
 
 		Map<String, Object>	props = new HashMap<>();
 		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
