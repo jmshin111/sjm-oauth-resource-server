@@ -31,12 +31,12 @@ public class KafkaProducer {
 
             @Override
             public void onSuccess(SendResult<String, Result> result) {
-            	LOG.info("Sent message=[" + message.toString() + "] with offset=[" + result.getRecordMetadata().offset() + "]");
+            	LOG.info("Sent message=[" + message.getphoneNumber() + " and " + message.getResult() + "] with offset=[" + result.getRecordMetadata().offset() + "]");
             }
 
             @Override
             public void onFailure(Throwable ex) {
-            	LOG.info("Unable to send message=[" + message.toString() + "] due to : " + ex.getMessage());
+            	LOG.info("Unable to send message=[" + message.getphoneNumber() + " and " + message.getResult() + "] due to : " + ex.getMessage());
             }
         });
     }

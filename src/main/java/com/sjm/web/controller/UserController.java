@@ -24,10 +24,8 @@ public class UserController {
     @PreAuthorize("#oauth2.hasScope('write')")
     @RequestMapping(method = RequestMethod.POST, value = "/api/rpaResult/withphone")
     @ResponseBody
-    
     public void RPAresult(@RequestBody Result result) {
     	
-    	LOG.info(result.toString());
     	LOG.info(result.getphoneNumber());
     	LOG.info(result.getResult());
 
