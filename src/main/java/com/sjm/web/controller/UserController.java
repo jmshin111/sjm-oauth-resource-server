@@ -16,7 +16,7 @@ import com.sjm.web.dto.Result;
 @Controller
 public class UserController {
 
-	private static final Logger LOG = LoggerFactory.getLogger(FooController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
 	
 	 @Autowired
 	 private KafkaProducer messageProducer;
