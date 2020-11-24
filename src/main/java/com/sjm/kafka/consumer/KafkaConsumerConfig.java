@@ -46,7 +46,7 @@ public class KafkaConsumerConfig {
 		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
 		props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
 		props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, resultSerde.serializer().getClass());
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, resultSerde.deserializer().getClass());
 		
 		return props;
 	}
