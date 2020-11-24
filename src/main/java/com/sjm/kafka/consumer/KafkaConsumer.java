@@ -15,15 +15,17 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.client.UnknownHttpStatusCodeException;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.sjm.web.dto.Result;
+
 @Controller
 public class KafkaConsumer {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(KafkaConsumer.class);
 	
 	@KafkaListener(topics = "${message.topic.name}", groupId = "${kafka.groupId}") 
-	public void listener(String message) {
+	public void listener(Result message) {
 
-		String result = "Foo Received Message in group : " + message;
+		String result = "Foo Received Message in group : " + message.toString();
 	
 		LOG.info(result);
 		
@@ -34,7 +36,8 @@ public class KafkaConsumer {
 //		httpHeaders.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_UTF8_VALUE);
 //		httpHeaders.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_UTF8_VALUE);
 		
-		httpHeaders.set("PhoneNumber", message);
+		httpHeaders.set("PhoneNumber", message.getphoneNumber());
+		httpHeaders.set("Result", message.getResult());
 		
 		HttpEntity reqEntity = null;
 

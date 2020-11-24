@@ -37,9 +37,9 @@ public class FooController {
     @ResponseBody
     public Foo findById(@PathVariable final long id) {
     	
-    	String message = "TEST Send Messages";
+//    	String message = "TEST Send Messages";
     	
-    	messageProducer.sendMessage(message);
+//    	messageProducer.sendMessage(message);
     	
         return new Foo(Long.parseLong(randomNumeric(2)), randomAlphabetic(4));
     }

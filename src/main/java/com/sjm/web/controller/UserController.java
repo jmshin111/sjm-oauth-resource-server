@@ -28,8 +28,10 @@ public class UserController {
     public void RPAresult(@RequestBody Result result) {
     	
     	LOG.info(result.toString());
-    	
-    	String message = result.getphoneNumber();
+    	LOG.info(result.getphoneNumber());
+	LOG.info(result.getResult());
+
+    	Result message = result;
     	
     	messageProducer.sendMessage(message);
     }

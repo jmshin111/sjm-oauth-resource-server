@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import com.sjm.web.dto.Result;
+
 @Controller
 public class KafkaProducer {
 	
@@ -19,22 +21,22 @@ public class KafkaProducer {
     private String topicName;
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, Result> kafkaTemplate;
     
-    public void sendMessage(String message) {
+    public void sendMessage(Result message) {
 
-        ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topicName, message);
+        ListenableFuture<SendResult<String, Result>> future = kafkaTemplate.send(topicName, message);
 
-        future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
+        future.addCallback(new ListenableFutureCallback<SendResult<String, Result>>() {
 
             @Override
-            public void onSuccess(SendResult<String, String> result) {
-            	LOG.info("Sent message=[" + message + "] with offset=[" + result.getRecordMetadata().offset() + "]");
+            public void onSuccess(SendResult<String, Result> result) {
+            	LOG.info("Sent message=[" + message.toString() + "] with offset=[" + result.getRecordMetadata().offset() + "]");
             }
 
             @Override
             public void onFailure(Throwable ex) {
-            	LOG.info("Unable to send message=[" + message + "] due to : " + ex.getMessage());
+            	LOG.info("Unable to send message=[" + message.toString() + "] due to : " + ex.getMessage());
             }
         });
     }
