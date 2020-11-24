@@ -13,7 +13,7 @@ public class Result {
         super();
 
         this.phoneNumber = phoneNumber;
-	this.result = result;
+        this.result = result;
     }
 
     public String getphoneNumber() {
@@ -29,7 +29,7 @@ public class Result {
     }
 
     public void setResult(final String result) {
-	this.result = result;
+    	this.result = result;
     }
 
 }

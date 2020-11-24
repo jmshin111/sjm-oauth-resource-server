@@ -29,7 +29,7 @@ public class UserController {
     	
     	LOG.info(result.toString());
     	LOG.info(result.getphoneNumber());
-	LOG.info(result.getResult());
+    	LOG.info(result.getResult());
 
     	Result message = result;
     	
